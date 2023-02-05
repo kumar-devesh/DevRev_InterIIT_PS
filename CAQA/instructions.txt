@@ -1,0 +1,13 @@
+run: bash download_data.sh
+run: bash setup.sh
+
+CUDA_VISIBLE_DEVICES=0 python src/bert_squad_trans.py \
+    --do_lower_case \
+    --adaptation_method=smooth_can \
+    --do_train \
+    --train_both \
+    --beta=0.001 \
+    --sigma=0.001 \
+    --mrqa_train_file=./data/synthetic/qagen_t5large_LM_5_10000_HotpotQA.jsonl \
+    --do_predict \
+    --predict_squad
